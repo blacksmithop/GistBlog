@@ -1,0 +1,1 @@
+from gist_wrapper.base import Gist
