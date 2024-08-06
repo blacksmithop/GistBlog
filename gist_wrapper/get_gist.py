@@ -9,7 +9,7 @@ class GetGist:
     def __init__(self, headers:dict):
         self.headers = headers
 
-    def Gist(self, category: str = "") -> List[GistItem]:
+    def get_gists(self, category: str = "") -> List[GistItem]:
         """Returns gists
         Category: str
          Can be either 'starred', 'public' or '' (for gists by the user)
@@ -29,13 +29,13 @@ class GetGist:
         return gist_iterator
     
 
-    def ById(self, gist_id: str) -> GistItem:
+    def get_gist(self, gist_id: str) -> GistItem:
         resp = get(f"{self.BASE_URL}/{gist_id}", headers=self.headers)
         data = resp.json()
 
         return GistItem(**data)
     
-    def Commits(self, gist_id: str) -> List[GistCommit]:
+    def get_commits(self, gist_id: str) -> List[GistCommit]:
         resp = get(f"{self.BASE_URL}/{gist_id}/commits", headers=self.headers)
         data = resp.json()
 

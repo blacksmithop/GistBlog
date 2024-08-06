@@ -6,7 +6,7 @@ class DeleteGist:
     def __init__(self, headers:dict):
         self.headers = headers
 
-    def removeGist(self, gist_id: str) -> bool:
+    def delete_gist(self, gist_id: str) -> bool:
         header = self.headers
 
         resp = delete(f"{self.BASE_URL}/{gist_id}", headers=header)

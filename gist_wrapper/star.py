@@ -6,7 +6,7 @@ class StarGist:
     def __init__(self, headers:dict):
         self.headers = headers
 
-    def checkIfStarred(self, gist_id: str) -> bool:
+    def check_if_starred(self, gist_id: str) -> bool:
         resp = get(f"{self.BASE_URL}/{gist_id}/star", headers=self.headers)
         resp_code = resp.status_code
 
@@ -14,7 +14,7 @@ class StarGist:
         return resp_code == 204
 
 
-    def add(self, gist_id: str) -> bool:
+    def start_gist(self, gist_id: str) -> bool:
         resp = put(f"{self.BASE_URL}/{gist_id}/star", headers=self.headers)
         resp_code = resp.status_code
 
@@ -22,7 +22,7 @@ class StarGist:
         return resp_code == 204
     
 
-    def unstar(self, gist_id: str) -> bool:
+    def remove_star(self, gist_id: str) -> bool:
         resp = delete(f"{self.BASE_URL}/{gist_id}/star", headers=self.headers)
         resp_code = resp.status_code
 

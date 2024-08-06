@@ -7,7 +7,7 @@ class CreateGist:
     def __init__(self, headers:dict):
         self.headers = headers
 
-    def newGist(self,files: dict, description: str = "A gist", public: bool = False) -> bool:
+    def create_new_gist(self,files: dict, description: str = "A gist", public: bool = False) -> bool:
         header = self.headers
 
         payload = {

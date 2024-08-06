@@ -8,14 +8,14 @@ class GetUser:
     def __init__(self, headers:dict):
         self.headers = headers
 
-    def GetUsers(self) -> List[User]:
+    def get_users(self) -> List[User]:
         resp = get(f"{self.BASE_URL}", headers=self.headers)
         data = resp.json()
 
         users = [User(**user) for user in data]
         return users
 
-    def GetUser(self, user: str) -> User:
+    def get_user_by_name(self, user: str) -> User:
         resp = get(f"{self.BASE_URL}/{user}", headers=self.headers)
         data = resp.json()
 
