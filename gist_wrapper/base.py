@@ -7,31 +7,27 @@ from gist_wrapper.fork import ForkGist
 from gist_wrapper.create import CreateGist
 from gist_wrapper.delete import DeleteGist
 from gist_wrapper.users import GetUser
-from dateutil.parser import parse
+from dotenv import load_dotenv
+from os import getenv
 
 
-class GistBase:
-    BASE_URL = "https://api.github.com/gists"
+load_dotenv()
 
+GITHUB_API_KEY = getenv("GITHUB_API_KEY")
+
+
+class Gist():
     def __init__(self):
-        self.gist_token = None
-        self.headers = None
-
-
-    def generate_headers(self) -> None:
+        
+        self.gist_token = GITHUB_API_KEY
+        
         header: Dict[str, str] = {
             "Accept": "application/vnd.github+json",
             "Authorization": f"Bearer {self.gist_token}",
             "X-GitHub-Api-Version": "2022-11-28",
         }
         self.headers = header
-
-
-class Gist(GistBase):
-    def __init__(self):
-        super().__init__()
-
-        self.headers = {}
+        
         self.identity = {}
 
         self.gist_token = None
@@ -42,7 +38,7 @@ class Gist(GistBase):
         self.create = CreateGist(self.headers)
         self.delete = DeleteGist(self.headers)
         self.user = GetUser(self.headers)
-
+        
     def set_token(self, token:str):
         self.gist_token = token
         self.generate_headers()

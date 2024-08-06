@@ -16,7 +16,7 @@ class CreateGist:
         resp = post(self.BASE_URL, headers=header, data=dumps(payload))
 
         resp_code = resp.status_code
-
+        print(resp.content)
         return resp_code == 201
     
 
